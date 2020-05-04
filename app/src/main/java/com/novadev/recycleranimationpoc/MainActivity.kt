@@ -1,10 +1,15 @@
 package com.novadev.recycleranimationpoc
 
+import android.graphics.Outline
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.ViewOutlineProvider
+import com.novadev.recycleranimationpoc.extension.toPx
 import com.novadev.recycleranimationpoc.model.MovieEntity
 import com.novadev.recycleranimationpoc.recycler.MovieAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.movie_item_header.view.*
 
 class MainActivity : AppCompatActivity(),
 MovieAdapter.OnMovieClicked{
@@ -17,7 +22,28 @@ MovieAdapter.OnMovieClicked{
     }
 
     private fun initView() {
-        rvMovies.update(getList(), this)
+//        rvMovies.update(getList(), this)
+
+        val radius = 12F.toPx(this)
+        ivHeader.outlineProvider = object : ViewOutlineProvider() {
+            override fun getOutline(view: View, outline: Outline) {
+                outline.setRoundRect(0, -radius.toInt(), view.width, view.height, radius)
+            }
+        }
+        ivHeader.clipToOutline = true
+
+        ivItem.outlineProvider = object : ViewOutlineProvider() {
+            override fun getOutline(view: View, outline: Outline) {
+                outline.setRoundRect(0, -radius.toInt(), view.width, view.height, radius)
+            }
+        }
+        ivItem.clipToOutline = true
+        ivItem2.outlineProvider = object : ViewOutlineProvider() {
+            override fun getOutline(view: View, outline: Outline) {
+                outline.setRoundRect(0, -radius.toInt(), view.width, view.height, radius)
+            }
+        }
+        ivItem2.clipToOutline = true
     }
 
     override fun onMovieClicked(movieEntity: MovieEntity) {

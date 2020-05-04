@@ -19,8 +19,8 @@ open class MovieHeaderViewHolder(view: View) : BaseViewHolder(view){
         initHeaderImage(context, ivHeader)
 
         tvName.text = item.name
-        tvDirector.text = item.director
-        tvSynopsis.text = item.synopsis
+//        tvDirector.text = item.director
+//        tvSynopsis.text = item.synopsis
         ivHeader.setBackgroundColor(ivHeader.resources.getColor(item.background))
     }
 
